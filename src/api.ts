@@ -1,27 +1,32 @@
-import { getApi } from "./helpers";
-import { IConfig, IGetConfigsResponse } from "./index.interface";
+import { getApi } from './helpers'
+import { type IConfig, type IGetConfigsResponse } from './index.interface'
+import * as dotenv from 'dotenv'
 
-export const getCashInConfig = (): Promise<IConfig> => {
-  return getApi("https://developers.paysera.com/tasks/api/cash-in");
-};
 
-export const getCashOutNaturalConfig = (): Promise<IConfig> => {
-  return getApi("https://developers.paysera.com/tasks/api/cash-out-natural");
-};
+dotenv.config();
+const API = process.env.API;
 
-export const getCashOutLegalConfig = (): Promise<IConfig> => {
-  return getApi("https://developers.paysera.com/tasks/api/cash-out-juridical");
-};
+export const getCashInConfig = async (): Promise<IConfig> => {
+  return await getApi(`${API}/cash-in`)
+}
+
+export const getCashOutNaturalConfig = async (): Promise<IConfig> => {
+  return await getApi(`${API}/cash-out-natural`)
+}
+
+export const getCashOutLegalConfig = async (): Promise<IConfig> => {
+  return await getApi(`${API}/cash-out-juridical`)
+}
 
 export const getConfigs = async (): Promise<IGetConfigsResponse> => {
   const configs = await Promise.all([
     getCashInConfig(),
     getCashOutLegalConfig(),
-    getCashOutNaturalConfig(),
-  ]);
+    getCashOutNaturalConfig()
+  ])
   return {
     cashIn: configs[0],
     cashOutLegal: configs[1],
-    cashOutNatural: configs[2],
-  };
-};
+    cashOutNatural: configs[2]
+  }
+}

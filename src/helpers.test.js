@@ -1,17 +1,17 @@
-import { roundDecimal } from "./helpers";
+import { roundDecimal } from './helpers.ts';
 
-test("roundDecimal", () => {
+test('roundDecimal', () => {
   expect(roundDecimal(0.12121212)).toBe(0.12);
 });
 
-test("roundDecimal", () => {
+test('roundDecimal', () => {
   expect(roundDecimal(0.167)).toBe(0.17);
 });
 
-test("roundDecimal", () => {
+test('roundDecimal', () => {
   expect(roundDecimal(0.00001)).toBe(0.0);
 });
 
-test("roundDecimal", () => {
+test('roundDecimal', () => {
   expect(roundDecimal(0.091)).toBe(0.09);
 });

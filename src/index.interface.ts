@@ -1,27 +1,27 @@
-import { ECurrency, ETransactionType, EUserType } from "./index.enum";
+import { type ECurrency, type ETransactionType, type EUserType } from './index.enum'
 
 export interface ITransaction {
-  date: string;
-  user_id: number;
-  user_type: EUserType;
-  type: ETransactionType;
-  operation: IOperation;
+  date: string
+  user_id: number
+  user_type: EUserType
+  type: ETransactionType
+  operation: IOperation
 }
 
 export interface IConfig {
-  percents: number;
-  max?: IOperation;
-  min?: IOperation;
-  week_limit?: IOperation;
+  percents: number
+  max?: IOperation
+  min?: IOperation
+  week_limit?: IOperation
 }
 
 export interface IOperation {
-  amount: number;
-  currency: ECurrency;
+  amount: number
+  currency: ECurrency
 }
 
 export interface IGetConfigsResponse {
-  cashIn: IConfig;
-  cashOutLegal: IConfig;
-  cashOutNatural: IConfig;
+  cashIn: IConfig
+  cashOutLegal: IConfig
+  cashOutNatural: IConfig
 }

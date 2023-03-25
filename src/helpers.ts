@@ -1,24 +1,24 @@
-import https from "node:https";
+import https from 'node:https'
 
 export const roundDecimal = (num: number): number => {
-  return Math.round(num * 100) / 100;
-};
+  return Math.round(num * 100) / 100
+}
 
-export const getApi = <T extends unknown>(url: string): Promise<T> => {
-  return new Promise<T>((resolve, reject) => {
+export const getApi = async <T extends unknown>(url: string): Promise<T> => {
+  return await new Promise<T>((resolve, reject) => {
     try {
-      let data = "";
+      let data = ''
       https.get(url, (response) => {
-        response.on("data", (chunk) => {
-          data += chunk;
-        });
+        response.on('data', (chunk) => {
+          data += chunk
+        })
 
-        response.on("end", () => {
-          resolve(JSON.parse(data));
-        });
-      });
+        response.on('end', () => {
+          resolve(JSON.parse(data))
+        })
+      })
     } catch (error) {
-      reject(error);
+      reject(error)
     }
-  });
-};
+  })
+}
